@@ -1,35 +1,79 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حصن المسلم</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Tajawal:wght@400;700&display=swap"
+        rel="stylesheet">
+
+
+    <meta name="description"
+        content="تطبيق حصن المسلم لقراءة الأذكار اليومية، أذكار الصباح والمساء، والنوم مع عداد ذكي وصوتيات واضحة.">
+    <meta name="keywords" content="حصن المسلم, أذكار, أذكار الصباح, أذكار المساء, دعاء, اذكار المسلم">
+    <meta name="author" content="Adhkar App">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="حصن المسلم - الأذكار اليومية">
+    <meta property="og:description" content="اقرأ وتتبع أذكارك اليومية بسهولة مع واجهة مريحة وعداد تفاعلي.">
+    <meta property="og:image" content="https://your-domain.com/preview-image.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="حصن المسلم - الأذكار اليومية">
+    <meta property="twitter:description" content="تطبيق بسيط ومريح لقراءة الأذكار اليومية وتتبع التكرار.">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#047857"> ```
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
-        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8fafc;
+        }
+
         /* INCREASED LINE HEIGHT HERE */
-        .quran-text { 
-            font-family: 'Amiri', serif; 
-            line-height: 2.8; /* Increased from 2.2 for better clarity */
+        .quran-text {
+            font-family: 'Amiri', serif;
+            line-height: 2.8;
+            /* Increased from 2.2 for better clarity */
             word-spacing: 2px;
         }
-        
-        .active-cat { background-color: #ecfdf5; color: #059669; border-right: 4px solid #059669; font-weight: bold; }
-        #menu-list::-webkit-scrollbar { width: 4px; }
-        #menu-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        .active-cat {
+            background-color: #ecfdf5;
+            color: #059669;
+            border-right: 4px solid #059669;
+            font-weight: bold;
+        }
+
+        #menu-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #menu-list::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
     </style>
 </head>
+
 <body class="text-slate-900 min-h-screen">
 
     <header class="bg-emerald-700 text-white p-4 sticky top-0 z-50 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <button onclick="toggleSidebar()" class="md:hidden p-2 hover:bg-emerald-800 rounded-lg transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                <button onclick="toggleSidebar()"
+                    class="md:hidden p-2 hover:bg-emerald-800 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
                 <h1 class="text-xl font-bold">حصن المسلم</h1>
@@ -41,15 +85,18 @@
     <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
         <aside id="sidebar" class="hidden md:block fixed md:relative inset-0 z-40 md:z-auto">
             <div onclick="toggleSidebar()" class="md:hidden fixed inset-0 bg-black/50"></div>
-            <div class="relative bg-white h-full md:h-auto w-3/4 md:w-64 lg:w-72 shadow-2xl md:shadow-sm border border-slate-200 flex flex-col rounded-l-none md:rounded-2xl overflow-hidden sticky top-24">
+            <div
+                class="relative bg-white h-full md:h-auto w-3/4 md:w-64 lg:w-72 shadow-2xl md:shadow-sm border border-slate-200 flex flex-col rounded-l-none md:rounded-2xl overflow-hidden sticky top-24">
                 <div class="p-4 bg-slate-50 border-b flex justify-between items-center">
                     <span class="font-bold text-slate-700">الأقسام</span>
                     <button onclick="toggleSidebar()" class="md:hidden text-slate-400 text-xl">&times;</button>
                 </div>
                 <div class="p-2 border-b">
-                    <input type="text" id="search-input" onkeyup="filterCategories()" placeholder="بحث في الأقسام..." class="w-full p-2 text-sm border rounded-lg focus:outline-emerald-500">
+                    <input type="text" id="search-input" onkeyup="filterCategories()" placeholder="بحث في الأقسام..."
+                        class="w-full p-2 text-sm border rounded-lg focus:outline-emerald-500">
                 </div>
-                <ul id="menu-list" class="divide-y divide-slate-100 overflow-y-auto h-[calc(100vh-180px)] md:max-h-[60vh]"></ul>
+                <ul id="menu-list"
+                    class="divide-y divide-slate-100 overflow-y-auto h-[calc(100vh-180px)] md:max-h-[60vh]"></ul>
             </div>
         </aside>
 
@@ -113,11 +160,15 @@
                     <p class="quran-text text-right text-xl text-slate-800 mb-6" dir="rtl">${item.text}</p>
                     <div class="flex flex-wrap justify-between items-center gap-4 border-t pt-4">
                         <div class="flex items-center gap-3">
+                            <!--
+
                             <button onclick="playAudio('${item.audio}')" class="w-10 h-10 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                                 </svg>
                             </button>
+                            -->
+
                             <span class="text-xs text-slate-400 font-bold uppercase">التكرار: ${item.count}</span>
                         </div>
                         <button onclick="handleCount(this)" class="bg-emerald-600 text-white px-8 py-2 rounded-xl font-bold transition-all active:scale-95">
@@ -151,4 +202,5 @@
         init();
     </script>
 </body>
+
 </html>
